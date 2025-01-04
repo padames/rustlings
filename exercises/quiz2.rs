@@ -18,9 +18,6 @@
 //   the first element is the string, the second one is the command.
 // - The output element is going to be a Vector of strings.
 //
-// No hints this time!
-
-// I AM NOT DONE
 
 pub enum Command {
     Uppercase,
@@ -44,9 +41,9 @@ mod my_module {
                 Command::Trim => {
                     output.push(string.trim().to_string())
                 },
-                Command::Append(how_many_times_itself) => {
+                Command::Append(how_many_times_bar) => {
                     let mut new_string : String = String::from(*string);
-                    for _ in 0..*how_many_times_itself {
+                    for _ in 0..*how_many_times_bar {
                         new_string = new_string.to_string() + "bar";
                     }
                     output.push(new_string)            
