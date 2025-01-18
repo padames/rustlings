@@ -8,13 +8,19 @@
 //
 // Execute `rustlings hint traits2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 // TODO: Implement trait `AppendBar` for a vector of strings.
+impl AppendBar for Vec<String> {
+    // I had to mutate self to accomplish the goal
+    // why compiler doesn't complain about different signature?
+    fn append_bar(mut self) -> Self {
+        self.append(&mut Vec::from(["Bar".to_owned(),]));
+        Vec::from(self.as_slice())
+    }
+}
 
 #[cfg(test)]
 mod tests {
