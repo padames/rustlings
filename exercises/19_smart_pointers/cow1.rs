@@ -12,8 +12,6 @@
 //
 // Execute `rustlings hint cow1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::borrow::Cow;
 
 fn abs_all<'a, 'b>(input: &'a mut Cow<'b, [i32]>) -> &'a mut Cow<'b, [i32]> {
@@ -49,6 +47,10 @@ mod tests {
         let mut input = Cow::from(&slice[..]);
         match abs_all(&mut input) {
             // TODO
+            Cow::Borrowed(_) => {
+                Ok(())
+            },
+            _ => Err("Expected return a borrrowed-not cloned vector."),
         }
     }
 
@@ -61,6 +63,8 @@ mod tests {
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
             // TODO
+            Cow::Owned(_) => Ok(()),
+            _ => Err("Expected to return an owned vector!"),
         }
     }
 
@@ -73,6 +77,10 @@ mod tests {
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
             // TODO
+            Cow::Owned(_) => {
+                Ok(())
+            },
+            _ => Err("Expected to clone on write in 'abs_all'!"),
         }
     }
 }
