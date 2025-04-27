@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "clippy2"
+name = "clippy3"
 version = "0.0.1"
