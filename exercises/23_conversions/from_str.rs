@@ -52,7 +52,10 @@ enum ParsePersonError {
 impl FromStr for Person {
     type Err = ParsePersonError;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
-    }
+        if s.len() == 0 {
+            return Err(ParsePersonError::Empty);
+        }
+        let parts = s.split(',').collect::<Vec<str>>();    }
 }
 
 fn main() {
