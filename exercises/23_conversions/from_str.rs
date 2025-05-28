@@ -57,12 +57,21 @@ impl FromStr for Person {
             return Err(ParsePersonError::Empty);
         }
         let parts = s.split(',').collect::<Vec<&str>>();
-            if parts.len != 2 {
-                return Err(ParsePersonError::BadLen);
-            }
+            if parts.len() != 2 {
+                return Err(ParsePersonError::BadLen)
+            } else {
+                let name = parts[0];
+                if name.is_empty() {
+                    return Err(ParsePersonError::NoName);
+                }
+                let age = parts[1].parse::<usize>()
+                    .map_err(ParsePersonError::ParseInt)?;
+                Ok(Person {
+                    name: name.to_string(),
+                    age,
+                })
         }
-        const name = parts[0].to_string().map_err(|_| ParsePersonError::NoName)?;
-
+    }
 }
 
 fn main() {
